@@ -1,25 +1,25 @@
 import { logger } from '@/lib/winston';
 import Blog from '@/models/blog';
 import { NextFunction, Request, Response } from 'express';
-import { JSDOM } from 'jsdom';
-import User from '@/models/user';
-import DOMPurify from 'dompurify';
+//import { JSDOM } from 'jsdom';
+//import User from '@/models/user';
+//import DOMPurify from 'dompurify';
 import { CustomError } from '@/utils/CustomError';
-const window = new JSDOM('').window;
+//const window = new JSDOM('').window;
 
-const purify = DOMPurify(window);
+//const purify = DOMPurify(window);
 
 const updateBlog = async (
-  req: Request<never, never, { title: string; content: string }, never>,
+  req: Request<{blogId: string}, never, { title: string; content: string }, never>,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const { content, title } = req.body;
+    //const { content, title } = req.body;
     const userId = req.userId;
     const blogId = req.params.blogId;
 
-    const user = await User.findById(userId).select('role').lean().exec();
+   // const user = await User.findById(userId).select('role').lean().exec();
 
     const blog = await Blog.findById(blogId).select('-__v').lean().exec();
 
@@ -33,15 +33,15 @@ const updateBlog = async (
 
     //update logic here.
 
-    const cleanContent = purify.sanitize(content);
+   // const cleanContent = purify.sanitize(content);
 
-    const updatedBlog = await Blog.update({
-      title,
-      content: cleanContent,
-      author: userId,
-    });
+    // const updatedBlog = await Blog.updateOne({
+    //   title,
+    //   content: cleanContent,
+    //   author: userId,
+    // });
 
-    logger.info(' Blog updated', newBlog);
+    logger.info(' Blog updated');
 
     res.status(201).json({
       blog: updateBlog,

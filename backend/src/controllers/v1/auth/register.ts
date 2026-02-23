@@ -49,6 +49,7 @@ const register = async (
     });
 
     res.cookie('refreshToken', refreshToken, {
+      //TODO: add max age?
       httpOnly: true,
       secure: config.NODE_ENV === 'PRODUCTION',
       sameSite: 'strict',
@@ -72,7 +73,7 @@ const register = async (
       role: newUser.role,
     });
   } catch (err) {
-    logger.error('Error during our registration', err);
+    logger.error('Error during user registration', err);
     next(err);
   }
 };

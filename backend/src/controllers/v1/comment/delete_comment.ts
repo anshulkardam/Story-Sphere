@@ -24,7 +24,7 @@ const deleteComment = async (
       throw new CustomError('comment not found', 404, 'NotFound');
     }
 
-    if (comment.userId !== currentUserId && user.role !== 'admin') {
+    if (comment.userId !== currentUserId && user?.role !== 'admin') {
       throw new CustomError('Access denied', 403, 'AuthError');
     }
 

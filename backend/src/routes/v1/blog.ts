@@ -4,6 +4,7 @@ import deleteBlog from '@/controllers/v1/blog/delete_blog';
 import getAllblogs from '@/controllers/v1/blog/get_all_blogs';
 import getBlogsbySlug from '@/controllers/v1/blog/get_blog_by_slug';
 import getBlogsbyUserId from '@/controllers/v1/blog/get_blogs_by_user';
+import { searchBlogs } from '@/controllers/v1/blog/search_blogs';
 import updateBlog from '@/controllers/v1/blog/update_blog';
 import authenticateUser from '@/middlewares/authenticateUser';
 import authorize from '@/middlewares/authorize';
@@ -19,12 +20,14 @@ router.post(
   authenticateUser,
   authorize(['admin']),
   validateData(createBlogSchema), //TODO: Add for all
-  upload.single('banner_image'),
-  uploadBlogBanner('post'),
+  // upload.single('banner_image'),
+  // uploadBlogBanner('post'),
   createBlog,
 );
 
 router.get('/', authenticateUser, authorize(['admin', 'user']), getAllblogs);
+
+router.get('/search', searchBlogs);
 
 router.get(
   '/user/:userId',

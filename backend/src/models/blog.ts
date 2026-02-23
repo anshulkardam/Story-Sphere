@@ -36,19 +36,19 @@ const blogSchema = new Schema<IBlog>(
     banner: {
       publicId: {
         type: String,
-        required: [true, 'Banner public id is required'],
+        // required: [true, 'Banner public id is required'],
       },
       url: {
         type: String,
-        required: [true, 'Banner url is required'],
+        // required: [true, 'Banner url is required'],
       },
       width: {
         type: Number,
-        required: [true, 'Banner width is required'],
+        // required: [true, 'Banner width is required'],
       },
       height: {
         type: Number,
-        required: [true, 'Banner height is required'],
+        // required: [true, 'Banner height is required'],
       },
     },
     author: {

@@ -2,7 +2,7 @@ import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import { logger } from '@/lib/winston';
 import { verifyAccessToken } from '@/lib/jwt';
 import { Request, Response, NextFunction } from 'express';
-import { UserJwtPayload } from '@/types/auth.interface';
+import { UserJwtPayload } from '@/types/interfaces';
 import { CustomError } from '@/utils/CustomError';
 
 const authenticateUser = (req: Request, res: Response, next: NextFunction) => {

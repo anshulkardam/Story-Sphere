@@ -13,7 +13,6 @@ const refreshToken = async (
 ) => {
   const refreshToken = req.cookies.refreshToken as string;
 
-  console.log({ refreshToken });
   try {
     const tokenExists = await Token.exists({ token: refreshToken });
 
@@ -28,6 +27,8 @@ const refreshToken = async (
     const jwtPayload = verifyRefreshToken(refreshToken) as {
       userId: Types.ObjectId;
     };
+
+    //TODO: what if refresh token verify fails?
 
     const accessToken = generateAccessToken(jwtPayload.userId);
 

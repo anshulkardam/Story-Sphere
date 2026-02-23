@@ -22,7 +22,7 @@ const authorize = (role: AuthRole[]) => {
 
       return next();
     } catch (err) {
-      logger.error('error authofizing', err);
+      logger.error('error authorizing user', err);
       next(err);
     }
   };

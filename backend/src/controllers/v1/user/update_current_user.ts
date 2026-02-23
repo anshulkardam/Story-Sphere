@@ -1,11 +1,12 @@
 import { logger } from '@/lib/winston';
 import User, { IUser } from '@/models/user';
+import { ApiResponse } from '@/types/interfaces';
 import { CustomError } from '@/utils/CustomError';
 import { NextFunction, Request, Response } from 'express';
 
 const updateCurrentUser = async (
   req: Request<never, never, Partial<IUser>, never>,
-  res: Response,
+  res: Response<ApiResponse<IUser>>,
   next: NextFunction,
 ): Promise<void> => {
   const userId = req.userId;
@@ -33,7 +34,7 @@ const updateCurrentUser = async (
 
     logger.info('User update success', updatedUser);
 
-    res.status(200).json({ user: updatedUser });
+    res.status(200).json({ status: 'success', data: updatedUser });
   } catch (err) {
     logger.error('Error while updating current user', err);
     next(err);

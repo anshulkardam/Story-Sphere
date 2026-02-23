@@ -6,6 +6,7 @@ import { NextFunction, Request, Response } from 'express';
 import config from '@/config';
 import { CustomError } from '@/utils/CustomError';
 import bcrypt from 'bcrypt';
+
 const login = async (
   req: Request<
     never,

@@ -2,7 +2,7 @@ import { logger } from '@/lib/winston';
 import Blog from '@/models/blog';
 import { NextFunction, Request, Response } from 'express';
 import { v2 as cloudinary } from 'cloudinary';
-import User from '@/models/user';
+//import User from '@/models/user';
 import { CustomError } from '@/utils/CustomError';
 
 const deleteBlog = async (
@@ -11,11 +11,11 @@ const deleteBlog = async (
   next: NextFunction,
 ): Promise<void> => {
   try {
-    const userId = req.userId;
+   // const userId = req.userId;
 
     const blogId = req.params.blogId;
 
-    const user = await User.findById(userId).select('role').lean().exec();
+    //const user = await User.findById(userId).select('role').lean().exec();
 
     const blog = await Blog.findById(blogId)
       .select('author banner.publicId')

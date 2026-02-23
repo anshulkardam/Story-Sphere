@@ -1,6 +1,6 @@
 import { logger } from '@/lib/winston';
 import Blog from '@/models/blog';
-import Like from '@/models/like';
+//import Like from '@/models/like';
 import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '@/utils/CustomError';
 import Comment from '@/models/comment';
